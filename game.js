@@ -8,7 +8,7 @@ const DEGREE = Math.PI/180;
 
 // LOAD SPRITE IMAGE
 const sprite = new Image();
-sprite.src = "img/sprite.png";
+sprite.src = "img/sprite(custom).png";
 
 // LOAD SOUNDS
 const SCORE_S = new Audio();
@@ -129,8 +129,8 @@ const bird = {
     
     frame : 0,
     
-    gravity : 0.25,
-    jump : 4.6,
+    gravity : 0.15,
+    jump : 4,
     speed : 0,
     rotation : 0,
     
@@ -174,10 +174,10 @@ const bird = {
             
             // IF THE SPEED IS GREATER THAN THE JUMP MEANS THE BIRD IS FALLING DOWN
             if(this.speed >= this.jump){
-                this.rotation = 45 * DEGREE;
+                this.rotation = 25 * DEGREE;
                 this.frame = 1;
             }else{
-                this.rotation = -15 * DEGREE;
+                this.rotation = -10 * DEGREE;
             }
         }
         
