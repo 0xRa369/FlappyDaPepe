@@ -15,23 +15,28 @@ sprite.src = "img/sprite(custom).png";
 
 const SCORE_S = new Audio();
 SCORE_S.src = "audio/sfx_point.wav";
+SCORE_S.volume = 0.4;
 
 const FLAP = new Audio();
 FLAP.src = "audio/sfx_flap.wav";
+FLAP.volume = 0.4;
 
 const HIT = new Audio();
 HIT.src = "audio/sfx_hit.wav";
+HIT
 
 const SWOOSHING = new Audio();
 SWOOSHING.src = "audio/sfx_swooshing.wav";
+SWOOSHING.volume = 0.4;
 
 const DIE = new Audio();
 DIE.src = "audio/sfx_die.wav";
+DIE.volume = 0.4;
 
 const MUSIC = new Audio();
 MUSIC.src = "audio/8bitAstley.mp3";
 MUSIC.loop = true;
-MUSIC.volume = 0.3;
+MUSIC.volume = 0.4;
 
 
 
