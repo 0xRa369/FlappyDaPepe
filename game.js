@@ -12,6 +12,7 @@ sprite.src = "img/sprite(custom).png";
 
 
 // LOAD SOUNDS
+
 const SCORE_S = new Audio();
 SCORE_S.src = "audio/sfx_point.wav";
 
@@ -26,6 +27,13 @@ SWOOSHING.src = "audio/sfx_swooshing.wav";
 
 const DIE = new Audio();
 DIE.src = "audio/sfx_die.wav";
+
+const MUSIC = new Audio();
+MUSIC.src = "audio/8bitAstley.ogg";
+MUSIC.loop = true;
+MUSIC.volume = 0.3;
+
+
 
 // GAME STATE
 const state = {
@@ -49,6 +57,7 @@ cvs.addEventListener("click", function (evt) {
     case state.getReady:
       state.current = state.game;
       SWOOSHING.play();
+      MUSIC.play();
       break;
     case state.game:
       if (bird.y - bird.radius <= 0) return;
@@ -173,7 +182,7 @@ const bird = {
 
   frame: 0,
 
-  gravity: 0.18,
+  gravity: 0.2,
   jump: 3.75,
   speed: 0,
   rotation: 0,
@@ -464,3 +473,8 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
+
+
+
+
+
