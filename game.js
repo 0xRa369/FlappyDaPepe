@@ -29,7 +29,7 @@ const DIE = new Audio();
 DIE.src = "audio/sfx_die.wav";
 
 const MUSIC = new Audio();
-MUSIC.src = "audio/8bitAstley.ogg";
+MUSIC.src = "audio/8bitAstley.mp3";
 MUSIC.loop = true;
 MUSIC.volume = 0.3;
 
