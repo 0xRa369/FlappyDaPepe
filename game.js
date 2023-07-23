@@ -16,6 +16,9 @@ const startSprites = [
   "img/houseSun.png",
   "img/land.png",  
   "img/buidl.png",
+  "img/Naturo.png",
+  "img/reddawn.png",
+  "img/dawn.png",
 ]
 
 const startSprite = new Image()
