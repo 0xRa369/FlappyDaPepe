@@ -499,7 +499,7 @@ const score = {
 
 // DRAW
 function draw() {
-  ctx.fillStyle = "#3a4150";
+  ctx.fillStyle = startSprite;
   ctx.fillRect(0, 0, cvs.width, cvs.height);
   bg.draw();
   pipes.draw();
