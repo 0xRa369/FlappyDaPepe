@@ -10,6 +10,18 @@ const DEGREE = Math.PI / 180;
 const sprite = new Image();
 sprite.src = "img/sprite(custom).png";
 
+const startSprites = [
+  "img/dawn.jpg",
+  "img/mewn.jpg",
+  "img/valle.jpg",
+  "img/houseSun.jpg",
+  "img/land.jpg",
+  "img/Naturo.jpg",
+  "img/reddawn.jpg",
+]
+
+const startSprite = new Image()
+startSprite.src = startSprites[Math.floor(Math.random() * startSprites.length)];
 
 // LOAD SOUNDS
 
@@ -90,18 +102,55 @@ cvs.addEventListener("click", function (evt) {
   }
 });
 
+// Start Screen Image
+
+const st = {
+  sX: 0,
+  sY: 0,
+  w: 320,
+  h: 480,
+  x: 0,
+  y: 0,
+
+  draw: function () {
+    ctx.drawImage(
+      startSprite,
+      this.sX,
+      this.sY,
+      this.w,
+      this.h,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
+
+    ctx.drawImage(
+      startSprite,
+      this.sX,
+      this.sY,
+      this.w,
+      this.h,
+      this.x + this.w,
+      this.y,
+      this.w,
+      this.h
+    );
+  },
+};
+
 // BACKGROUND
 const bg = {
   sX: 0,
   sY: 0,
-  w: 275,
-  h: 226,
+  w: 320,
+  h: 480,
   x: 0,
-  y: cvs.height - 226,
+  y: 0,
 
   draw: function () {
     ctx.drawImage(
-      sprite,
+      startSprite,
       this.sX,
       this.sY,
       this.w,
@@ -258,16 +307,16 @@ const bird = {
 // GET READY MESSAGE
 const getReady = {
   sX: 0,
-  sY: 228,
-  w: 173,
-  h: 152,
-  x: cvs.width / 2 - 173 / 2,
-  y: 80,
+  sY: 0,
+  w: 320,
+  h: 480,
+  x: 0,
+  y: 0,
 
   draw: function () {
     if (state.current == state.getReady) {
       ctx.drawImage(
-        sprite,
+        startSprite,
         this.sX,
         this.sY,
         this.w,
