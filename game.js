@@ -11,13 +11,11 @@ const sprite = new Image();
 sprite.src = "img/sprite(custom).png";
 
 const startSprites = [
-  "img/dawn.jpg",
-  "img/mewn.jpg",
-  "img/valle.jpg",
-  "img/houseSun.jpg",
-  "img/land.jpg",
-  "img/Naturo.jpg",
-  "img/reddawn.jpg",
+  "img/mewn.png",
+  "img/valle.png",
+  "img/houseSun.png",
+  "img/land.png",  
+  "img/buidl.png",
 ]
 
 const startSprite = new Image()
