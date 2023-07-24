@@ -610,7 +610,7 @@ function update() {
 // LOOP
 function loop() {
   // Play Music on start
-  if (state.current === state.getReady) {
+  if (state.current === state.current) {
     MUSIC.play();
   }
   update();
