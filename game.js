@@ -39,7 +39,7 @@ FLAP.volume = 0.4;
 
 const HIT = new Audio();
 HIT.src = "audio/sfx_hit.wav";
-HIT
+HIT.volume = 0.4;
 
 const SWOOSHING = new Audio();
 SWOOSHING.src = "audio/sfx_swooshing.wav";
@@ -72,13 +72,14 @@ const startBtn = {
   h: 29,
 };
 
+
 // CONTROL THE GAME
 cvs.addEventListener("click", function (evt) {
+  evt.preventDefault();
   switch (state.current) {
     case state.getReady:
       state.current = state.game;
-      SWOOSHING.play();
-      MUSIC.play();
+      SWOOSHING.play();      
       break;
     case state.game:
       if (bird.y - bird.radius <= 0) return;
@@ -198,7 +199,7 @@ const logo = {
   initialHeight: 40,
 
   draw: function () {
-    if (state.current == state.getReady) {
+    if (state.current == state.getReady) {      
       // Update animation offsets
       this.animationOffsetX += this.animationSpeedX;
       this.animationOffsetY += this.animationSpeedY;
@@ -608,6 +609,10 @@ function update() {
 
 // LOOP
 function loop() {
+  // Play Music on start
+  if (state.current === state.getReady) {
+    MUSIC.play();
+  }
   update();
   draw();
   frames++;
