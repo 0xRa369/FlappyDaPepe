@@ -10,6 +10,9 @@ const DEGREE = Math.PI / 180;
 const sprite = new Image();
 sprite.src = "img/sprite(custom).png";
 
+const welcomeSprite = new Image();
+welcomeSprite.src = "img/wellSprite.png";
+
 const startSprites = [
   "img/mewn.png",
   "img/valle.png",
@@ -115,7 +118,7 @@ const st = {
 
   draw: function () {
     ctx.drawImage(
-      startSprite,
+      welcomeSprite,
       this.sX,
       this.sY,
       this.w,
@@ -127,7 +130,7 @@ const st = {
     );
 
     ctx.drawImage(
-      startSprite,
+      welcomeSprite,
       this.sX,
       this.sY,
       this.w,
@@ -175,6 +178,89 @@ const bg = {
     );
   },
 };
+// LOGO
+const logo = {
+  sX: 320,
+  sY: 0,
+  w: 206,
+  h: 40,
+  x: cvs.width / 2 - 206 / 2,
+  y: cvs.height / 5,
+
+  // Animation variables
+  animationOffsetX: 0,
+  animationOffsetY: 0,
+  animationSpeedX: 0.1,
+  animationSpeedY: 0.2,
+  animationRangeX: 5,
+  animationRangeY: 3,
+  initialWidth: 206,
+  initialHeight: 40,
+
+  draw: function () {
+    if (state.current == state.getReady) {
+      // Update animation offsets
+      this.animationOffsetX += this.animationSpeedX;
+      this.animationOffsetY += this.animationSpeedY;
+
+      // Calculate the scaled width and height based on animation offsets
+      const scaledWidth = this.initialWidth + Math.sin(this.animationOffsetX) * this.animationRangeX;
+      const scaledHeight = this.initialHeight + Math.sin(this.animationOffsetY) * this.animationRangeY;
+
+      // Calculate the position of the logo so that it remains centered
+      const logoX = this.x + (this.w - scaledWidth) / 2;
+      const logoY = this.y + (this.h - scaledHeight) / 2;
+
+      // Draw the logo with the scaled width and height
+      ctx.drawImage(
+        welcomeSprite,
+        this.sX,
+        this.sY,
+        this.w,
+        this.h,
+        logoX,
+        logoY,
+        scaledWidth,
+        scaledHeight
+      );
+    }
+  },
+};
+
+// LOGO Pepe
+const logoPepe = {
+  sX: 320,
+  sY: 40,
+  w: 60,
+  h: 85,
+  x: cvs.width / 2 - 60 / 2,
+  y: cvs.height / 3 + 50,
+
+  // Floating motion variables
+  floatOffset: 0,
+  floatSpeed: 0.1,
+  floatRange: 10,
+
+  draw: function () {
+    if (state.current == state.getReady) {
+      // Update the y position with the floating motion
+      this.y = cvs.height / 3 + 50 + Math.sin(this.floatOffset) * this.floatRange;
+      this.floatOffset += this.floatSpeed;
+      
+      ctx.drawImage(
+        welcomeSprite,
+        this.sX,
+        this.sY,
+        this.w,
+        this.h,
+        this.x,
+        this.y,
+        this.w,
+        this.h
+      );
+    }
+  },
+};
 
 // FOREGROUND
 const fg = {
@@ -220,7 +306,7 @@ const fg = {
   },
 };
 
-// BIRD
+// PEPE
 const bird = {
   animation: [
     { sX: 279, sY: 139 },
@@ -317,7 +403,7 @@ const getReady = {
   draw: function () {
     if (state.current == state.getReady) {
       ctx.drawImage(
-        startSprite,
+        welcomeSprite,
         this.sX,
         this.sY,
         this.w,
@@ -500,8 +586,7 @@ const score = {
 
 // DRAW
 function draw() {
-  ctx.fillStyle = startSprite;
-  ctx.fillRect(0, 0, cvs.width, cvs.height);
+  
   bg.draw();
   pipes.draw();
   fg.draw();
@@ -509,6 +594,8 @@ function draw() {
   getReady.draw();
   gameOver.draw();
   score.draw();  
+  logo.draw();
+  logoPepe.draw();
 }
 
 
