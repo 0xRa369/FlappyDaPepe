@@ -554,21 +554,62 @@ const pipes = {
   },
 };
 
+// MEDALS
+const medals = [
+  {
+    scoreThreshold: 50,
+    sX: 311,
+    sY: 111,
+    w: 45,
+    h: 45,
+    x: 71,
+    y: 178,
+  },
+  {
+    scoreThreshold: 30,
+    sX: 311,
+    sY: 158,
+    w: 45,
+    h: 45,
+    x: 71,
+    y: 178,
+  },
+  {
+    scoreThreshold: 20,
+    sX: 359,
+    sY: 112,
+    w: 45,
+    h: 45,
+    x: 71,
+    y: 178,
+  },
+  {
+    scoreThreshold: 10,
+    sX: 359,
+    sY: 158,
+    w: 45,
+    h: 45,
+    x: 71,
+    y: 178,
+  },
+];
+
 // SCORE
 const score = {
   best: parseInt(localStorage.getItem("best")) || 0,
   value: 0,
+  medal: null,
 
   draw: function () {
     ctx.fillStyle = "#FFF";
     ctx.strokeStyle = "#000";
 
-    if (state.current == state.game) {
+    if (state.current === state.game) {
       ctx.lineWidth = 2;
       ctx.font = "35px Teko";
       ctx.fillText(this.value, cvs.width / 2, 50);
       ctx.strokeText(this.value, cvs.width / 2, 50);
-    } else if (state.current == state.over) {
+    } else if (state.current === state.over) {
       // SCORE VALUE
       ctx.font = "25px Teko";
       ctx.fillText(this.value, 225, 186);
@@ -576,11 +617,35 @@ const score = {
       // BEST SCORE
       ctx.fillText(this.best, 225, 228);
       ctx.strokeText(this.best, 225, 228);
+
+      // MEDAL
+      if (this.medal) {
+        ctx.drawImage(
+          sprite,
+          this.medal.sX,
+          this.medal.sY,
+          this.medal.w,
+          this.medal.h,
+          this.medal.x,
+          this.medal.y,
+          this.medal.w,
+          this.medal.h
+        );
+      }
     }
   },
 
   reset: function () {
     this.value = 0;
+  },
+
+  checkForMedal: function () {
+    for (const medalData of medals) {
+      if (this.value >= medalData.scoreThreshold) {
+        this.medal = medalData;
+        break;
+      }
+    }
   },
 };
 
@@ -605,12 +670,13 @@ function update() {
   bird.update();
   fg.update();
   pipes.update();
+  score.checkForMedal();
 }
 
 // LOOP
 function loop() {
   // Play Music on start
-  if (state.current === state.current) {
+  if (state.current === state.getReady) {
     MUSIC.play();
   }
   update();
@@ -620,8 +686,3 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
-
-
-
-
-
