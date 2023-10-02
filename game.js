@@ -73,13 +73,15 @@ const startBtn = {
 };
 
 
+
 // CONTROL THE GAME
 cvs.addEventListener("click", function (evt) {
   evt.preventDefault();
   switch (state.current) {
     case state.getReady:
       state.current = state.game;
-      SWOOSHING.play();      
+      SWOOSHING.play(); 
+      MUSIC.play();     
       break;
     case state.game:
       if (bird.y - bird.radius <= 0) return;
@@ -557,7 +559,7 @@ const pipes = {
 // MEDALS
 const medals = [
   {
-    scoreThreshold: 50,
+    scoreThreshold: 30,
     sX: 311,
     sY: 111,
     w: 45,
@@ -566,7 +568,7 @@ const medals = [
     y: 178,
   },
   {
-    scoreThreshold: 30,
+    scoreThreshold: 20,
     sX: 311,
     sY: 158,
     w: 45,
@@ -575,7 +577,7 @@ const medals = [
     y: 178,
   },
   {
-    scoreThreshold: 20,
+    scoreThreshold: 10,
     sX: 359,
     sY: 112,
     w: 45,
@@ -584,7 +586,7 @@ const medals = [
     y: 178,
   },
   {
-    scoreThreshold: 10,
+    scoreThreshold: 5,
     sX: 359,
     sY: 158,
     w: 45,
